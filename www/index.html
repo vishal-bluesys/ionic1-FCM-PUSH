@@ -68,7 +68,7 @@ window.FCMPlugin.onNotification(function(data){
                     var currentlocation=window.location.href;
                     if(data.newlink==undefined)
                     {
-                        data.newlink="#/app/dashboard";  // path where you want to navigate after clicking on notification
+                        data.newlink="#/app/playlists";  // path where you want to navigate after clicking on notification
                     }
                     var newloc=currentlocation.split("#")[0]+data.newlink;
                     window.location=newloc;
