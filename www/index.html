@@ -80,20 +80,20 @@ window.FCMPlugin.onNotification(function(data){
                   console.log(data);
                 }else{
                   //Notification was received in foreground. Maybe the user needs to be notified.
-                  //alert( JSON.stringify(data) );
+                  alert( JSON.stringify(data) );
                   console.log(data);
                 }
 
             });
 
             window.FCMPlugin.onTokenRefresh(function(token){
-                   // alert( token );
+                    alert( token );
                     console.log(token);
 
                 });
 
             window.FCMPlugin.getToken(function(token){
-                   // alert(token);
+                    alert(token);
                     console.log(token);
                   /*  $.post("http://abc.com/icici/index.php/Rest/regtoken", //link where you post the data
                     {
