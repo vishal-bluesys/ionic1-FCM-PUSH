@@ -38,3 +38,73 @@
     <ion-nav-view></ion-nav-view>
   </body>
 </html>
+<script type="text/javascript" charset="utf-8">
+	
+  document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady(){
+    document.addEventListener("backbutton", function(e){
+          
+       
+		var checkpath = window.location.href;
+	   if( checkpath == 'file:///android_asset/www/index.html#/app/dashboard'){
+			 e.preventDefault();
+			 //navigator.app.exitApp();
+			 window.plugins.appMinimize.minimize();
+       }
+       else {
+           navigator.app.backHistory()
+       }
+    }, false);
+
+window.FCMPlugin.onNotification(function(data){
+  var dt = {"notiid":data.notiid}; 
+                       /* $.post("http://abc.com/foldername/index.php/Rest/update_notification_view_time",
+                        dt,
+                        function(data, status){
+                            console.log("Data: " + data + "\nStatus: " + status);
+                        });*/
+                 
+                    var currentlocation=window.location.href;
+                    if(data.newlink==undefined)
+                    {
+                        data.newlink="#/app/dashboard";  // path where you want to navigate after clicking on notification
+                    }
+                    var newloc=currentlocation.split("#")[0]+data.newlink;
+                    window.location=newloc;
+                                  
+                if(data.wasTapped){
+                  //Notification was received on device tray and tapped by the user.
+                  //alert( JSON.stringify(data) );
+                  
+                  console.log(data);
+                }else{
+                  //Notification was received in foreground. Maybe the user needs to be notified.
+                  //alert( JSON.stringify(data) );
+                  console.log(data);
+                }
+
+            });
+
+            window.FCMPlugin.onTokenRefresh(function(token){
+                   // alert( token );
+                    console.log(token);
+
+                });
+
+            window.FCMPlugin.getToken(function(token){
+                   // alert(token);
+                    console.log(token);
+                  /*  $.post("http://abc.com/icici/index.php/Rest/regtoken", //link where you post the data
+                    {
+                        regID:token,
+                        name:"abc", // name of the client whom you want to put name
+                        email:"abc@gmail.com", // emailid of the client if he wants to get his email id
+                        platform: device.platform // device platform e.g: ios or android
+                    });*/
+
+                });
+
+
+}
+    </script>
